@@ -15,7 +15,7 @@
     "imap": "^0.8.19",
     "lucide-react": "^0.462.0",
     "mailparser": "^3.9.14",
-    "next": "15.3.3",
+    "next": "15.3.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^2.14.1"
