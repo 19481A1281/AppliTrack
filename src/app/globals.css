@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Light Mode Design System (TechFino / Stitch inspired) ────────────────── */
+:root {
+  --bg-base: #faf8ff;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f3f3fe;
+  --border: #c3c6d7;
+  --text-primary: #191b23;
+  --text-muted: #434655;
+  --text-subtle: #737686;
+  --accent: #004ac6;
+  --accent-soft: rgba(0, 74, 198, 0.08);
+  --accent-glow: rgba(0, 74, 198, 0.20);
+
+  /* Triple-layer ambient shadows from Stitch specification */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 0 0 1px var(--border);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05), 0 0 0 1px var(--border);
+  --shadow-lg: 0 12px 24px rgba(15, 23, 42, 0.06), 0 4px 6px -4px rgba(15, 23, 42, 0.04), 0 0 0 1px var(--border);
+}
+
+/* ── Dark Mode Design System (Smoked Glass / TechFino inspired) ───────────── */
+.dark {
+  --bg-base: #06060a;
+  --bg-surface: #0f0f15;
+  --bg-elevated: #151522;
+  --border: rgba(255, 255, 255, 0.06);
+  --text-primary: #f0f0fb;
+  --text-muted: #c3c6d7;
+  --text-subtle: #737686;
+  --accent: #6366f1;
+  --accent-soft: rgba(99, 102, 241, 0.12);
+  --accent-glow: rgba(99, 102, 241, 0.30);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border);
+  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* ── Sleek Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ── Columns Scroll ── */
+.kanban-col {
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* ── Premium Hover Card Transition ── */
+.job-card {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease;
+  cursor: default;
+}
+
+.job-card:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent);
+}
+
+/* ── Action-Required Soft Glow ── */
+.card-glow {
+  box-shadow: 0 0 0 1px var(--accent), 0 4px 20px var(--accent-glow);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px var(--accent), 0 4px 14px var(--accent-glow);
+  }
+
+  50% {
+    box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(99, 102, 241, 0.45);
+  }
+}
+
+/* ── Danger Badge Pulse ── */
+.danger-flash {
+  animation: dangerFlash 1.8s ease-in-out infinite;
+}
+
+@keyframes dangerFlash {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: scale(1.03);
+  }
+}
+
+/* ── Slide In Spring Animation ── */
+.card-slide-in {
+  animation: cardSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes cardSlideIn {
+  from {
+    transform: translateY(-24px) scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ── Scan Beam ── */
+.scan-beam {
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.6), transparent);
+  animation: scanBeam 2s ease-in-out infinite;
+}
+
+@keyframes scanBeam {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(300%);
+  }
+}
+
+/* ── Gradient Text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #004ac6 0%, #6366f1 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 60%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── High-Fidelity Glassmorphism ── */
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+}
+
+.dark .glass {
+  background: rgba(15, 15, 22, 0.65);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* ── Status column top borders ─────────────────── */
+.col-applied {
+  border-top: 3px solid #6366f1;
+}
+
+.col-under_review {
+  border-top: 3px solid #f59e0b;
+}
+
+.col-shortlisted {
+  border-top: 3px solid #10b981;
+}
+
+.col-interview_scheduled {
+  border-top: 3px solid #3b82f6;
+}
+
+.col-rejected {
+  border-top: 3px solid #ef4444;
+}
+
+/* ── Green Pulsing Call to Action ── */
+@keyframes greenPulse {
+
+  0%,
+  100% {
+    border-color: #10b981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.3);
+    background: transparent;
+    color: #10b981;
+  }
+
+  50% {
+    border-color: #10b981;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+    background: rgba(16, 185, 129, 0.18);
+    color: #047857;
+  }
+}
+
+.dark .animate-green-pulse {
+  animation: greenPulseDark 1.4s infinite ease-in-out;
+}
+
+@keyframes greenPulseDark {
+
+  0%,
+  100% {
+    border-color: #34d399;
+    box-shadow: 0 0 6px rgba(52, 211, 153, 0.3);
+    background: transparent;
+    color: #34d399;
+  }
+
+  50% {
+    border-color: #34d399;
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.8);
+    background: rgba(52, 211, 153, 0.15);
+    color: #a7f3d0;
+  }
+}
+
+.animate-green-pulse {
+  animation: greenPulse 1.4s infinite ease-in-out;
+}
+
+/* ── Mode toggle button ──────────────────────────── */
