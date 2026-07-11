@@ -129,7 +129,7 @@ function fetchEmails(
                         subject: parsed.subject ?? '',
                         from: String(parsed.from?.text ?? ''),
                         date: parsed.date ?? new Date(),
-                        text: parsed.text ?? parsed.html ?? '',
+                        text: (parsed.text || parsed.html || '') as string,
                       });
                     } catch { /* skip */ }
                     res();
